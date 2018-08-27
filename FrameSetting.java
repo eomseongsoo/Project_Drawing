@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 
 public class FrameSetting extends Frame {
 
-	// ¸Ş´º¹Ù¿Í ±×¸®±â ¸Ş´º, ±×¸®±× ¸Ş´º ÇÏÀ§ ¸Ş´º º¯¼ö¼³Á¤
+	// ë©”ë‰´ë°”ì™€ ê·¸ë¦¬ê¸° ë©”ë‰´, ê·¸ë¦¬ê·¸ ë©”ë‰´ í•˜ìœ„ ë©”ë‰´ ë³€ìˆ˜ì„¤ì •
 	private MenuBar mb = new MenuBar();
 	
 	private Menu File = new Menu("File");
@@ -20,14 +20,15 @@ public class FrameSetting extends Frame {
 	private MenuItem New=new MenuItem("New");
 	
 	
-	// ¸Ş´º¹Ù·Î ±¸ÇöÇÒÁö¸»Áö ¹ÌÁ¤ÀÌ´Ù... ½ÇÁ¦ ±×¸²ÆÇ Ã³·³ ±âÈ£·Î ¸Ş´º¹Ù°¡ ¾Æ´Ñ ¹Ù·Î ¹öÆ°À» Å¬¸¯ÇØ¼­ ±¸ÇöÇÏ´Â °ÍÀÌ ÁÁÀ» °Í °°´Ù..
+	// ë©”ë‰´ë°”ë¡œ êµ¬í˜„í• ì§€ë§ì§€ ë¯¸ì •ì´ë‹¤... ì‹¤ì œ ê·¸ë¦¼íŒ ì²˜ëŸ¼ ê¸°í˜¸ë¡œ ë©”ë‰´ë°”ê°€ ì•„ë‹Œ ë°”ë¡œ ë²„íŠ¼ì„ í´ë¦­í•´ì„œ êµ¬í˜„í•˜ëŠ” ê²ƒì´ ì¢‹ì„ ê²ƒ ê°™ë‹¤..
+	// ì´ë²¤íŠ¸ ì²˜ë¦¬ê°€ í•„ìš”í•˜ë‹¤ ì¡°ì›ë¼ë¦¬ í˜‘ì˜í•´ì„œ íŒŒíŠ¸ ë‚˜ëˆ„ì–´ì„œ ì§„í–‰í•´ë„ ì¢‹ì„ë“¯?
 	private Menu draw = new Menu("Draw");
-	private MenuItem pen = new MenuItem("Pen"); // Ææ ±×¸®±â
-	private MenuItem line = new MenuItem("Line"); // ¼± ±×¸®±â
-	private MenuItem Circle = new MenuItem("Circle"); // ¿ø ±×¸®±â
-	private MenuItem recg = new MenuItem("Recgtangle"); // »ç°¢Çü ±×¸®±â
+	private MenuItem pen = new MenuItem("Pen"); // íœ ê·¸ë¦¬ê¸°
+	private MenuItem line = new MenuItem("Line"); // ì„  ê·¸ë¦¬ê¸°
+	private MenuItem Circle = new MenuItem("Circle"); // ì› ê·¸ë¦¬ê¸°
+	private MenuItem recg = new MenuItem("Recgtangle"); // ì‚¬ê°í˜• ê·¸ë¦¬ê¸°
 
-	// ÇÁ·¹ÀÓ ¼³Á¤
+	// í”„ë ˆì„ ì„¤ì •
 	public FrameSetting(String title) {
 		super(title);
 
