@@ -55,7 +55,7 @@ public class canvas extends Application {
 		});
 		
 		
-		stage.setScene(scene);
+		stage.setScene(scene);ㄴㄹㄴㅁㅇㄹ
 		stage.show();
 		
 	}
