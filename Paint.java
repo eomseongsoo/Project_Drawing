@@ -1,38 +1,12 @@
-/*
-  * ===================================================
-  *                      contents
-  * ===================================================
-  * 00- Free draw
-  * 01- rubber
-  * 02- draw Line
-  * 03- draw Rectangele
-  * 04- draw Circle
-  * 05- draw Ellipse
-  * 06- Text
-  *
-  * ----------------------------------------------------
-  *                     Features
-  * ----------------------------------------------------
-  * - the ability to change Line color
-  * - the ability to change Fill color
-  * - the ability to change Line width
-  * - Undo & Redo
-  * - Open Image && save Image
-  *
-  * ____________________________________________________
-  * problems
-  * - undo & redo : not working with free draw and rubber
-  * - Line & Rect & Circ ... aren't be updated while drawing
-  * ===================================================
-*/
-package paint;
-
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Stack;
+
+import javax.imageio.ImageIO;
+
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
@@ -60,9 +34,8 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javax.imageio.ImageIO;
 
-public class Paint extends Application {
+public class paint extends Application {
     
     @Override
     public void start(Stage primaryStage) {
@@ -70,7 +43,7 @@ public class Paint extends Application {
         Stack<Shape> redoHistory = new Stack();
                         
         /* ----------btns---------- */
-        ToggleButton drowbtn = new ToggleButton("Draw");
+        ToggleButton drawbtn = new ToggleButton("Draw");
         ToggleButton rubberbtn = new ToggleButton("Rubber");
         ToggleButton linebtn = new ToggleButton("Line");
         ToggleButton rectbtn = new ToggleButton("Rectange");
@@ -78,7 +51,7 @@ public class Paint extends Application {
         ToggleButton elpslebtn = new ToggleButton("Ellipse");
         ToggleButton textbtn = new ToggleButton("Text");
         
-        ToggleButton[] toolsArr = {drowbtn, rubberbtn, linebtn, rectbtn, circlebtn, elpslebtn, textbtn};
+        ToggleButton[] toolsArr = {drawbtn, rubberbtn, linebtn, rectbtn, circlebtn, elpslebtn, textbtn};
         
         ToggleGroup tools = new ToggleGroup();
         
@@ -119,13 +92,13 @@ public class Paint extends Application {
         open.setStyle("-fx-background-color: #80334d;");
         
         VBox btns = new VBox(10);
-        btns.getChildren().addAll(drowbtn, rubberbtn, linebtn, rectbtn, circlebtn, elpslebtn,
+        btns.getChildren().addAll(drawbtn, rubberbtn, linebtn, rectbtn, circlebtn, elpslebtn,
                 textbtn, text, line_color, cpLine, fill_color, cpFill, line_width, slider, undo, redo, open, save);
         btns.setPadding(new Insets(5));
         btns.setStyle("-fx-background-color: #999");
         btns.setPrefWidth(100);
         
-        /* ----------Drow Canvas---------- */
+        /* ----------Draw Canvas---------- */
         Canvas canvas = new Canvas(1080, 790);
         GraphicsContext gc;
         gc = canvas.getGraphicsContext2D();
@@ -137,7 +110,7 @@ public class Paint extends Application {
         Ellipse elps = new Ellipse();
                         
         canvas.setOnMousePressed(e->{
-            if(drowbtn.isSelected()) {
+            if(drawbtn.isSelected()) {
                 gc.setStroke(cpLine.getValue());
                 gc.beginPath();
                 gc.lineTo(e.getX(), e.getY());
@@ -180,7 +153,7 @@ public class Paint extends Application {
         });
         
         canvas.setOnMouseDragged(e->{
-            if(drowbtn.isSelected()) {
+            if(drawbtn.isSelected()) {
                 gc.lineTo(e.getX(), e.getY());
                 gc.stroke();
             }
@@ -191,7 +164,7 @@ public class Paint extends Application {
         });
         
         canvas.setOnMouseReleased(e->{
-            if(drowbtn.isSelected()) {
+            if(drawbtn.isSelected()) {
                 gc.lineTo(e.getX(), e.getY());
                 gc.stroke();
                 gc.closePath();
