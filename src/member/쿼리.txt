@@ -1,0 +1,15 @@
+create database summer;
+use summer;
+
+create table member(
+id varchar(20) primary key,
+password varchar(20) not null,
+name varchar(20) not null,
+addr varchar(20) not null,
+phone varchar(20) not null
+);
+
+insert into member values('xce223451','1111','이동현','대구시','010');
+
+select password from member where id='xce223451';
+
