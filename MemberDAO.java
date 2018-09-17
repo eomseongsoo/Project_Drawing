@@ -54,7 +54,7 @@ public class MemberDAO {
 		}
 	}
 
-/*	public boolean login(String id, String password) {
+	public boolean login(String id, String password) {
 		String sql = "select password from member where id=?;";
 		PreparedStatement pstmt = null;
 		Member member = new Member();
@@ -83,14 +83,11 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
-		
 		return result;
 
-	}*/
+	}
 
-	
-	
-    // 조건에 맞는 행을 DB에서 삭제하는 메서드
+
 	public Member selectOne(String id) {
 		String sql = "select * from Member where id=?;";
 		PreparedStatement pstmt = null;

@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 
 public class MemberController implements Initializable {
 
+	MemberDAO md = new MemberDAO();
+
 	@FXML
 	private Label lblStatus;
 
@@ -36,30 +38,28 @@ public class MemberController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		btn1.setOnAction(event -> handleLoginOnClick(event));
-		btn2.setOnAction(event -> handleJoinOnClick(event));
+		btn1.setOnAction(event -> handleFormLoginSuccess(event));
+		btn2.setOnAction(event -> handleFormJoin(event));
 
 	}
 
-	public void handleLoginOnClick(ActionEvent event) {
+	public void handleFormLoginSuccess(ActionEvent event) {
 
-		MemberDAO mmd = new MemberDAO();
-
-		// mmd.login(txtID.getText(), txtPassword.getText());
-
+		lblStatus.setStyle("-fx-text-fill:red;");
 		String id = txtID.getText();
 		String password = txtPassword.getText();
 		System.out.println(id);
 		System.out.println(password);
-		System.out.println(mmd.selectOne(id).getPassword());
+		System.out.println(md.selectOne(id).getPassword());
 
 		if (id.equals("")) {
 			lblStatus.setText("아이디를 입력하세요");
 		} else if (password.equals("")) {
 			lblStatus.setText("비밀번호를 입력하세요");
-		} else if (!id.equals(id) || !(password.equals(mmd.selectOne(id).getPassword()))) {
+		} else if (!id.equals(id) || !(password.equals(md.selectOne(id).getPassword()))) {
 			lblStatus.setText("아이디 또는 비밀번호를 확인하세요");
 		} else {
+			lblStatus.setStyle("-fx-text-fill:green;");
 			lblStatus.setText("로그인이 되었습니다");
 
 			try {
@@ -77,7 +77,7 @@ public class MemberController implements Initializable {
 		}
 	}
 
-	public void handleJoinOnClick(ActionEvent event) {
+	public void handleFormJoin(ActionEvent event) {
 
 		Parent parent;
 		try {
