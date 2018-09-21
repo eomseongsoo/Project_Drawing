@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+
+import javafx.scene.control.TextArea;
 //한명의 클라이 언트와 통신하도록 해주는 클라이언트 클래스 입니다
 public class ChatClient {
 Socket socket;
@@ -29,7 +31,7 @@ public void receive() {
 							+socket.getRemoteSocketAddress()
 							+":"+Thread.currentThread().getName());
 					String message=new String(buffer,0,length, "utf-8");
-					for(ChatClient client:ChatMain.clients) {
+					for(ChatClient client:RootController.clients) {
 						client.send(message);
 					}
 				}
@@ -37,7 +39,7 @@ public void receive() {
 				try {
 					System.out.println("[메시지 수신 오류]"
 							+socket.getRemoteSocketAddress()+": "+Thread.currentThread().getName());
-					ChatMain.clients.remove(ChatClient.this);
+					RootController.clients.remove(ChatClient.this);
 					socket.close();
 				}catch(Exception e2) {
 					e2.printStackTrace();
@@ -45,7 +47,7 @@ public void receive() {
 			}
 		}
 	};
-	ChatMain.threadPool.submit(thread);
+	RootController.threadPool.submit(thread);
 }
 //해당 클라이언트에게 메세지를 전송하는 메소드입니다
 public void send(String message) {
@@ -64,7 +66,7 @@ public void send(String message) {
 					System.out.println("[메시지 송신 오류]"
 							+socket.getRemoteSocketAddress()
 							+":"+Thread.currentThread().getName());
-					ChatMain.clients.remove(ChatClient.class);
+					RootController.clients.remove(ChatClient.class);
 					socket.close();
 				}catch(Exception e2) {
 					e2.printStackTrace();
@@ -72,7 +74,7 @@ public void send(String message) {
 			}
 		}
 	};
-	ChatMain.threadPool.submit(thread);
+	RootController.threadPool.submit(thread);
 	
 }
 }
