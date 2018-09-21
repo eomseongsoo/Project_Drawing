@@ -12,7 +12,7 @@
 <?import javafx.scene.control.Button?>
 
 <BorderPane prefHeight="400" prefWidth="400" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="Client.RootController">
+fx:controller="ChatClient.RootController">
 	<!-- TODO Add Nodes -->
 	<padding>
       <Insets topRightBottomLeft="5" />
