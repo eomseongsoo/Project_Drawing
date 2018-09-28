@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -24,8 +25,8 @@ public class RootController implements Initializable{
 	@FXML Button sendButton;
 	@FXML TextField input;
 	
+	String user_id;
 	Socket socket;
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
