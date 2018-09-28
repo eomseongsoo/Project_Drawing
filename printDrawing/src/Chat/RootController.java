@@ -24,7 +24,7 @@ public class RootController implements Initializable{
 	@FXML TextArea textArea;
 
 	public static ExecutorService threadPool;
-	public static Vector<ChatClient> clients=new Vector<ChatClient>();
+	public static Vector<Chat> clients=new Vector<Chat>();
 	ServerSocket serverSocket;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -72,7 +72,7 @@ public class RootController implements Initializable{
 				while(true) {
 					try {
 						Socket socket=serverSocket.accept();
-						clients.addElement(new ChatClient(socket));
+						clients.addElement(new Chat(socket));
 						System.out.println("[클라이언트 접속]"
 								+socket.getRemoteSocketAddress()
 								+":"+Thread.currentThread().getName());
@@ -92,9 +92,9 @@ public class RootController implements Initializable{
 	public void stopServer() {
 		try {
 			//현재 작동중인 모든 소켓닫기
-			Iterator<ChatClient> iterator=clients.iterator();
+			Iterator<Chat> iterator=clients.iterator();
 			while(iterator.hasNext()) {
-				ChatClient client=iterator.next();
+				Chat client=iterator.next();
 				client.socket.close();
 				iterator.remove();
 			}
@@ -109,5 +109,32 @@ public class RootController implements Initializable{
 		}
 		
 	}
+	public void removeClientThread(Chat ct) {
+		clients.remove(ct);
+	}
+
+	//매개변수로 id로 ClientThread 찾아서 리턴
+	public Chat findThread(String id2){
+		Chat ct = null;
+		for (int i = 0; i < clients.size(); i++) {
+			ct = clients.get(i);
+			if(ct.id.equals(id2)) break;
+		}
+		return ct;
+	}
+
+	//접속된 모든 id를 리턴(; 구분) ex)aaa,bbb,홍길동
+	public String getIds(String room){
+		String ids = "";
+		for (int i = 0; i < clients.size(); i++) {
+			if(clients.get(i).room.equals(room)){
+				Chat ct = clients.get(i);
+				ids+=ct.id+",";//aaa,bbb,ccc,ddd,
+			}
+		}
+		return ids;
+	}
+	
+	
 
 }
